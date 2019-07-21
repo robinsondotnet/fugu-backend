@@ -16,7 +16,7 @@ app.use('/', indexRouter);
 app.use('/recipes', recipesRouter);
 
 app.use('/', (req, res) => {
-    res.status(200).send('La API funciona correctamente');
+    res.status(200).send('API works successfully');
   });
   
   app.listen(3000);
