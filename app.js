@@ -15,4 +15,10 @@ app.use(cookieParser());
 app.use('/', indexRouter);
 app.use('/recipes', recipesRouter);
 
+app.use('/', (req, res) => {
+    res.status(200).send('La API funciona correctamente');
+  });
+  
+  app.listen(3000);
+
 module.exports = app;
