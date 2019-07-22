@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 mongoose.connect('mongodb://robinson:igashinoeden2019@ds253567.mlab.com:53567/fugudb', { useNewUrlParser: true });
 var db = mongoose.connection;
 
-// Added check for DB connection
 
 if(!db)
     console.log("Error connecting db")
@@ -26,11 +25,5 @@ else
 
 app.use('/', indexRouter);
 app.use('/recipes', recipesRouter);
-
-app.use('/', (req, res) => {
-    res.status(200).send('API works successfully');
-  });
-  
-  app.listen(3000);
 
 module.exports = app;
