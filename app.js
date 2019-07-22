@@ -17,7 +17,6 @@ app.use(bodyParser.json());
 mongoose.connect('mongodb://robinson:igashinoeden2019@ds253567.mlab.com:53567/fugudb', { useNewUrlParser: true });
 var db = mongoose.connection;
 
-
 if(!db)
     console.log("Error connecting db")
 else
