@@ -11,7 +11,6 @@ router.get('/', function(request, response, next) {
               message: err,
           });
       }
-      //response.json(recipes);
       response.json(recipes.map(function(recipe) {return { id: recipe._id, name: recipe.name}}));
  });
 })
@@ -20,12 +19,9 @@ router.post('/', function(request, response, next) {
     
     var recipe = new Recipe();
     recipe.name = request.body.name;
-    recipe.save(function (err) {
-         //if (err)
-        //     res.json(err);
-response.json({
-            
-    id: recipe._id, name: recipe.name
+    recipe.save(function (err) {    
+     response.json({ 
+        id: recipe._id, name: recipe.name
         });
     }); 
  })

@@ -25,5 +25,4 @@ else
 
 app.use('/', indexRouter);
 app.use('/recipes', recipesRouter);
-
 app.listen(app.get('port'))
