@@ -18,13 +18,16 @@ mongoose.connect('mongodb://robinson:igashinoeden2019@ds253567.mlab.com:53567/fu
 var db = mongoose.connection;
 app.set('port', process.env.PORT || 8080);
 
+app.set('port', process.env.PORT || 8080);
+
 if(!db)
     console.log("Error connecting db")
 else
     console.log("Db connected successfully")
 
 app.use('/', indexRouter);
-app.use('/main', recipesRouter);
+app.use('/recipes', recipesRouter);
+app.listen(app.get('port'))
 
 module.exports = app;
-app.listen(app.get('port'))
+
