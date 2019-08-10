@@ -1,5 +1,6 @@
-var exports=module.exports={};
-exports.AddNumber=function(a,b)
-{
-return a+b;
+module.exports = {
+    addNumber: function(a,b)
+    {
+        return a+b;
+    }
 };
