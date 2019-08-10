@@ -11,6 +11,7 @@ router.get('/', function(request, response, next) {
               message: err,
           });
       }
+
       //response.json(recipes);
       response.json(recipes.map(function(recipe) {return { id: recipe._id, name: recipe.name}}));
  });
@@ -62,5 +63,10 @@ response.json({
         });
     });
  })
+
+      response.json(recipes);
+ });
+})
+
 
  module.exports = router;

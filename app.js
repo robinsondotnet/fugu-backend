@@ -16,7 +16,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 mongoose.connect('mongodb://robinson:igashinoeden2019@ds253567.mlab.com:53567/fugudb', { useNewUrlParser: true });
 var db = mongoose.connection;
+
 app.set('port', process.env.PORT || 8080);
+
+
 
 if(!db)
     console.log("Error connecting db")
@@ -26,4 +29,8 @@ else
 app.use('/', indexRouter);
 app.use('/recipes', recipesRouter);
 
+ 
 app.listen(app.get('port'))
+
+module.exports = app;
+
