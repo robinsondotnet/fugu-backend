@@ -1,6 +1,6 @@
 const recipes = [
-    { id: "1", name: "Lomo saltado" },
-    { id: "2", name: "Pollo al horno" },
+    { id: "1", name: "Lomo" },
+    { id: "2", name: "Pollo Saltado" },
 ];
 
 module.exports = recipes;
