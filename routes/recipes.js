@@ -52,7 +52,8 @@ router.post('/', function(request, response, next) {
     }, function (err, recipe) {
         if (err)
             response.send(err);
-            response.json({
+        
+        response.json({
             status: "success",
             message: 'Recipe deleted'
         });
