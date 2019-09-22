@@ -1,28 +1,28 @@
 const express = require('express');
 const router = express.Router();
 const { RecipeRepository } = require('../repositories');
+const RecipeMapper = require('../mappers/recipe.mapper');
 
-router.get('/', function(request, response, next) {
-    const session = request.app.get('dbDriver').session();
-    const recipes = RecipeRepository.getRecipes();
+router.get('/', function (request, response, _) {
+    const driver = request.app.get('dbDriver');
 
-    const resultPromise = session.writeTransaction(tx =>
-        tx.run(
-            'CREATE (a:Greeting) SET a.message = $message RETURN a.message + ", from node " + id(a)',
-            { message: 'hello, world 123' }
-        )
-    )
-
-    resultPromise.then(result => {
-        session.close()
-
-        const singleRecord = result.records[0]
-        const greeting = singleRecord.get(0)
-
-        console.log(greeting)
-        response.json(recipes);
-    })
-
+    new RecipeRepository(driver)
+        .getRecipes()
+        .then(result => {
+            response.json(result);
+        })
 })
 
- module.exports = router;
+router.post('/', function (request, response, _) {
+    const driver = request.app.get('dbDriver');
+
+    const recipe = RecipeMapper.mapRequestToModel(request.body);
+
+    new RecipeRepository(driver)
+        .createRecipe(recipe)
+        .then(result => {
+            response.json(result);
+        });
+});
+
+module.exports = router;
