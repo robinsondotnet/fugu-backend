@@ -1,30 +1,16 @@
-module.exports = class {
-    constructor(driver) {
-        this.driver = driver;
-    }
+const { create, getByNodeType } = require('../database');
 
+module.exports = {
     getRecipes() {
-        const session = this.driver.session();
-        return session
-            .writeTransaction(tx => tx.run('MATCH (r:Recipe) RETURN r'))
+        return getByNodeType('Recipe')
             .then(result => {
-                session.close()
                 const records = result.records[0]
                 return records;
-            })
-    }
-
+            });
+    },
     createRecipe(recipe) {
-        const session = this.driver.session();
-        return session
-        .writeTransaction(tx =>
-            tx.run(
-                'CREATE (r:Recipe) SET r.name = $name RETURN r',
-                recipe
-            )
-        )
+        return create(recipe)
             .then(result => {
-                session.close()
                 const singleRecord = result.records[0]
                 const recipe = singleRecord.get(0)
                 console.log(recipe)

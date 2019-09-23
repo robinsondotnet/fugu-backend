@@ -1,12 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { RecipeRepository } = require('../repositories');
-const RecipeMapper = require('../mappers/recipe.mapper');
+const { RecipeMapper } = require('../mappers');
 
 router.get('/', function (request, response, _) {
-    const driver = request.app.get('dbDriver');
-
-    new RecipeRepository(driver)
+    RecipeRepository
         .getRecipes()
         .then(result => {
             response.json(result);
@@ -14,11 +12,9 @@ router.get('/', function (request, response, _) {
 })
 
 router.post('/', function (request, response, _) {
-    const driver = request.app.get('dbDriver');
-
     const recipe = RecipeMapper.mapRequestToModel(request.body);
 
-    new RecipeRepository(driver)
+    RecipeRepository
         .createRecipe(recipe)
         .then(result => {
             response.json(result);
