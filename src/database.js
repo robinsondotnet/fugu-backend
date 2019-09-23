@@ -15,6 +15,8 @@ module.exports = {
         const session = this.driver.session();
         const nodePreffix = "r";
         const nodeType = getClassName(model);
+        console.log('nodeType: ')
+        console.log(nodeType)
         const setValuesRawSentence = splitJoin(model, nodePreffix);
         return session.writeTransaction(tx => {
             tx.run(
@@ -27,7 +29,7 @@ module.exports = {
         const session = this.driver.session();
         return session.writeTransaction(tx => {
             tx.run(
-                `MATCH (x:${nodeType} RETURN x)`
+                `MATCH (x:${nodeType}) RETURN x`
             )
         }).then((result) => { session.close(); return result });
     }
