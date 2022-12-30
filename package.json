@@ -16,7 +16,7 @@
     "neo4j-driver": "^1.7.6"
   },
   "devDependencies": {
-    "mocha": "^6.2.0",
+    "mocha": "^10.2.0",
     "nodemon": "^1.19.1",
     "sinon": "^7.4.2"
   }
